@@ -1,25 +1,25 @@
 from django.db import models
 
 class User(models.Model):
-	name = models.CharField(max_length=200)
+	uname = models.CharField(max_length=200)
+	name= models.CharField(max_length=200)
+	
 	about = models.TextField()
-	access_level = models.IntegerField(default=0) 
+	passhash=models.CharField(max_length=200)
 
 class Category(models.Model):
 	cname = models.CharField(max_length=200)
-	decription = models.TextField()
+	description = models.TextField()
 
-class Entries(models.Model):
-	entry_name = models.CharField(max_length=200)
+class Entry(models.Model):
+	title = models.CharField(max_length=200)
 	author = models.ForeignKey(User)
-	summary = models.CharField(max_length=1000)
 	content = models.TextField()
 	category = models.ForeignKey(Category)
 	date_created = models.DateTimeField('date published')
 
-class Responses(models.Model):
-	entry = models.ForeignKey(Entries)
+class Response(models.Model):
+	entry = models.ForeignKey(Entry)
 	responder = models.ForeignKey(User)
 	date = models.DateTimeField('date of response')
 	response = models.TextField()
-	response_level = models.IntegerField(default=0)

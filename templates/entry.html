@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% block title %}
+{{ entry.title }}
+{% endblock %}
+{% block content %}
+	{% if entry %}
+		 <article>
+	 
+			<h3><a href="#">{{entry.title}}</a></h3>
+			<h6>Written by <a href="{% url 'index_user' entry.author.id %}">{{entry.author.name}}</a> on {{entry.date_created}} in <a href="{% url 'index_cat' entry.category.id %}">{{entry.category.cname}}</a></h6>
+ 
+		<p>{{ entry.content }} </p>
+      </article>
+	{% endif %}
+	{% if comments %}
+		<hr />
+		
+		<table>
+		<div id = "commentlist">
+			<h6> Comments:</h6><br/>
+			{% for comment in comments %}
+			<h6>Written by <a href="{% url 'index_user' comment.responder.id %}">{{comment.responder.name}}</a> on {{comment.date}}.</h6>
+			<p>{{ comment.response }}</p>
+			{% endfor %}
+		{% endif %}
+
+			<!--Adding comments-->
+	{% if liuser %}
+	<form action="{% url 'comment_action' entry.id %}" method="POST">
+	{% csrf_token %}
+	<textarea name="comment" style="width:50%" ></textarea>
+	<br />
+	<input type="submit" value="Post" />
+	</form>
+	{% else %}
+	<p> You must be <a href="{% url 'login' %}">logged</a> in to comment </p>
+	{% endif %}
+		
+		</table>
+		
+{% endblock %}

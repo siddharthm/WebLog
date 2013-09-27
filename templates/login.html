@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block content %}
+{% if message %}
+ <h3>{{message}} </h3>
+{% endif %}
+<form method="POST" action="{% url 'login_action' %}" >
+	{% csrf_token %}
+	<p style="display:inline;">User Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p><input type="text" name="username" style="width:150px;display:inline;" />
+	<br />
+	<p style="display:inline;">Password&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p><input type="password" name="password" style="width:150px;display:inline;" />
+	<br />
+	<input type="submit" value="Login" style="" />
+</form>
+{% endblock %}

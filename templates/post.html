@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h3>New Entry</h3>
+
+<form action="{% url 'post_action' %}" method="POST">
+	{% csrf_token %}
+	<input type="text" name="title" style="width:400px;" />
+	<br />
+	<textarea name="content" style="width:400px;height:200px;" ></textarea>
+	{% if cats %}
+		<select name="category" style="width:100px;">
+		{% for cat in cats %}
+			<option value="{{ cat.id }}">{{cat.cname}}</option>
+		{% endfor %}
+		</select>
+	{% endif %}
+	<br />
+	<input type="submit" value="Post" />
+</form>
+
+
+
+{% endblock %}

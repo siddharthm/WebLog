@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+{% block content %}
+
+<h3>Sign Up</h3>
+	
+	<form name = "register" action = "{% url 'signup_action' %}" method = "POST">
+		{% csrf_token %}
+			<p style="display:inline;">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><input style="display:inline;width:200px;"type="text" name="name">
+			<br>
+			<p style="display:inline;">Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><input style="display:inline;width:200px;"type="text" name="username">
+			<br>
+			<p style="display:inline;">Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><input style="display:inline;width:200px;"type="password" name="password1">
+			<br/>
+			<p style="display:inline;">Repeat password:&nbsp;&nbsp;&nbsp;&nbsp;</p><input style="display:inline;width:200px;"type="password" name="password2">
+			<br/>
+			<p style="display:inline;">About: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+			<textarea style="margin-left:145px;width:200px;height:70px;" name="about"></textarea>
+			<br/>
+			<input type="submit" />
+	</form>
+  
+{% endblock %}
