@@ -7,7 +7,7 @@
 		 <article>
 	 
 			<h3><a href="#">{{entry.title}}</a></h3>
-			<h6>Written by <a href="{% url 'index_user' entry.author.id %}">{{entry.author.name}}</a> on {{entry.date_created}} in <a href="{% url 'index_cat' entry.category.id %}">{{entry.category.cname}}</a></h6>
+			<h6>Written by <a title="{{ entry.author.about }}" href="{% url 'index_user' entry.author.id %}">{{entry.author.name}}</a> on {{entry.date_created}} in <a title="{{ entry.category.description }}" href="{% url 'index_cat' entry.category.id %}">{{entry.category.cname}}</a></h6>
  
 		<p>{{ entry.content }} </p>
       </article>

@@ -52,7 +52,8 @@ def signup_action(request):
 	passh=passhash.hexdigest()
 	user=User(uname=uname,name=name,passhash=passh,about=about)
 	user.save()
-	request.session['message']="Signup successful, login now"
+	request.session['uname']=uname
+	request.session['message']="Welcome to the WebLog, %s"%name
 	return HttpResponseRedirect(reverse('index'))
 
 def login(request):
@@ -148,7 +149,7 @@ def index(request,user_id=0,cat_id=0,searchkw=""):
 	if 'message' in request.session:
 		message=request.session['message']
 		del request.session['message']
-	entries=Entry.objects.all().order_by('-date_created')[:5]
+	entries=Entry.objects.all().order_by('-date_created')[:100]
 	if user_id!=0:
 		try:
 			author=User.objects.get(id=user_id)

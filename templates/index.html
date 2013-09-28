@@ -15,7 +15,7 @@
          
         </ul>
       </div>
-      <h1><a href="{% url 'index' %}" style="text-decoration:none;">WeBlog </a><small>
+      <h1><a href="{% url 'index' %}" style="text-decoration:none;">WebLog </a><small>
 	  
 		{% if message %}
 			<span style="color:red;">{{ message }}</span>
@@ -43,7 +43,7 @@
 		 <article>
 	 
 			<h3><a href="{% url 'entry' entry.id %}">{{entry.title}}</a></h3>
-			<h6>Written by <a href="{% url 'index_user' entry.author.id %}">{{entry.author.name}}</a> on {{entry.date_created}} in <a href="{% url 'index_cat' entry.category.id %}">{{entry.category.cname}}</a></h6>
+			<h6>Written by <a title="{{ entry.author.about }}" href="{% url 'index_user' entry.author.id %}">{{entry.author.name}}</a> on {{entry.date_created}} in <a title="{{ entry.category.description }}" href="{% url 'index_cat' entry.category.id %}">{{entry.category.cname}}</a></h6>
  
 		<p>{{ entry.content }} </p>
       </article>
@@ -65,7 +65,7 @@
       <h5>Categories</h5>
       <ul class="side-nav">
 		{% for cat in cats %}
-        <li><a href="{% url 'index_cat' cat.id %}">{{ cat.cname }}</a></li>
+        <li><a title="{{ cat.description }}" href="{% url 'index_cat' cat.id %}">{{ cat.cname }}</a></li>
 		{% endfor %}
       </ul>
 	  {% endif %}
